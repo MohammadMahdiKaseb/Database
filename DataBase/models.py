@@ -17,12 +17,13 @@ class Student(Base):
     studenId = Column(Integer() , primary_key=True , autoincrement=True)
     frist_name = Column(String(50))
     last_name = Column(String(50))
-    birth_data = Column(Date())
+    birth_data = Column(Date)
     grade = Column(Integer)
-    level = Column()
-    update_at = Column(TIMESTAMP ,
-     server_default=func.now()
-     ,onupdate=func.cucurrent_timestamp())
+    level = Column(Integer)
+    update_at = Column(TIMESTAMP
+     ,server_default=func.now()
+     ,onupdate=func.cucurrent_timestamp()
+    )
 
 
     def __init__(self , name = None , family = None , grade = None , level = None):

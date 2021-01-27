@@ -3,8 +3,8 @@ from sqlalchemy.orm import sessionmaker
 
 
 class Connection():
-    def __init__(self):
-        self.engine = create_engine("mysql://poulstar:poulstar@localhost/student")
+    def __init__(self):             #engine://username:password@localhost/database
+        self.engine = create_engine("mysql://poulstar:poulstar@localhost/joniurs")
 
 
     def get_connection(self):
