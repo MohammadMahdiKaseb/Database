@@ -14,8 +14,8 @@ Base = declarative_base()
 
 class Student(Base):
     __tablename__ = "student"
-    studenId = Column(Integer() , primary_key=True , autoincrement=True)
-    frist_name = Column(String(50))
+    studenId = Column(Integer , primary_key=True , autoincrement=True)
+    first_name = Column(String(50))
     last_name = Column(String(50))
     birth_data = Column(Date)
     grade = Column(Integer)
@@ -26,18 +26,16 @@ class Student(Base):
     )
 
 
-    def __init__(self , name = None , family = None , grade = None , level = None):
-     self.name = name
-     self.family = family 
+    def __init__(self , first_name = None , last_name = None ,birth_data = None, grade = None , level = None):
+     self.first_name = first_name
+     self.last_name = last_name 
+     self.birth_data = birth_data
      self.grade = grade
      self.level = level
 
+    def __str__(self):
+        return self.first_name + self.last_name
 
 engine = Connection().get_connection()
-if not engine.dialect.has_table(engine , "student"): 
-    Base.metadata.create_all(engine , checkfirst=True )
-    print("Database Created")
-else:
-    print("Database {} exists!".format("student")) 
-
+Base.metadata.create_all(engine , checkfirst=True )
 

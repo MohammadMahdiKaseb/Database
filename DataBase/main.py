@@ -1,16 +1,23 @@
 from models import Student
-from sqlalchemy import engine
-from sqlalchemy.orm import session
 from connection import Connection 
-from sqlalchemy.sql.schema import MetaData
-from sqlalchemy.sql import table , insert 
 
-engine = Connection.get_connection()
-session = Connection.create_session()
 
-metadata = MetaData(bind=engine)
-student = table("student" , metadata , autoload=True)
+session = Connection().create_session()
 
-i = insert(student)
-i = i.values({"name" : "mahdi" , "family" : "kaseb" , "grade" : 99 })
-session.execute(i)
+
+# person1 = Student(
+#     "Mobin",
+#     "Ziaei" ,
+#     "2024-05-02",
+#     98,
+#     10
+# )
+# session.add(person1)
+# session.commit()
+
+persons = session.query(Student).filter(Student.first_name == "Mahdi")
+for person in persons:
+    print(person)
+
+
+
