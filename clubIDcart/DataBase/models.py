@@ -7,7 +7,7 @@ from sqlalchemy import (Column ,
      engine,
      func)
 from sqlalchemy.sql.elements import Null
-from .connection import Connection
+from connection import Connection
 
 
 Base = declarative_base()
@@ -27,15 +27,16 @@ class Student(Base):
     )
 
 
-    def __init__(self , first_name = None , last_name = None ,birth_data = None, image = None):
+    def __init__(self , first_name = None , last_name = None ,club_id = club_id , birth_data = None, image = None):
      self.first_name = first_name
      self.last_name = last_name
+     self.club_id = club_id
      self.image = image
      self.birth_data = birth_data
 
 
     def __str__(self):
-     pass
+     return self.first_name + " " + self.last_name
 
 engine = Connection().get_connection()
 Base.metadata.create_all(engine , checkfirst=True )
