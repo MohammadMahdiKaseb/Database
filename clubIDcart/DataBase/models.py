@@ -7,13 +7,13 @@ from sqlalchemy import (Column ,
      engine,
      func)
 from sqlalchemy.sql.elements import Null
-from connection import Connection
+from .connection import Connection
 
 
 Base = declarative_base()
 
 
-class Student(Base):
+class Member(Base):
     __tablename__ = "member"
     memberID = Column(Integer, primary_key=True , autoincrement=True)
     first_name = Column(String(255) , nullable=True)
@@ -27,7 +27,7 @@ class Student(Base):
     )
 
 
-    def __init__(self , first_name = None , last_name = None ,club_id = club_id , birth_data = None, image = None):
+    def __init__(self , first_name = None , last_name = None ,club_id = None , birth_data = None, image = None):
      self.first_name = first_name
      self.last_name = last_name
      self.club_id = club_id
