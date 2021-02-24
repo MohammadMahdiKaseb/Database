@@ -86,7 +86,25 @@ class GUI(tk.Tk):
         tk.Button(frame_u , text= "Browse" , command= self.browse_func).grid(row = 4 , column=1)
 
         tk.Button(frame_u , text= "Update" , command= self.create).grid(row = 5 , column=0 ,columnspan=2 , sticky=tk.E+tk.W)
+    
     #######################################################################
+
+    
+        frame_s = tk.LabelFrame(self , text= "Search")
+        frame_s.grid(row=1 , column=1)
+
+        self.id_s = tk.IntVar()
+        tk.Entry(frame_s , textvariable=self.id_s).grid(row = 0 , column = 0)
+        tk.Button(frame_s , text= "Search" , command= self.search_func).grid(row = 0 , column=1)
+
+    #######################################################################    
+    
+    def search_func(self):
+        session = Connection().create_session()
+        person = session.query(Member).filter(Member.memberID == self.id_s.get())
+        ttsh = person[0].first_name , person[0].last_name , person[0].birth_data
+        print(person[0].first_name)
+        messagebox.showinfo( "Done",ttsh )
 
     def up(self):
         session = Connection().create_session()
@@ -95,7 +113,7 @@ class GUI(tk.Tk):
             "first_name":self.name_u.get(),
             "last_name":self.last_u.get(),
             "image":self.filename_u.get(),
-            "first_name":self.name_u.get(),
+            "birth_data":self.birthdata_u.get(),
         })
     def browse_func(self):
         self.filename.set(filedialog.askopenfilename())
