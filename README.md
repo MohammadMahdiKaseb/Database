@@ -8,7 +8,6 @@ Inside this project, a tkinter emulator program has been created that is respons
 
 
 #**_Russian_**#
-
 Это мой первый проект базы данных, созданный с помощью комбинации языка Python и движка MySQL.
 Внутри этого проекта была создана программа-эмулятор tkinter, которая отвечает за создание IDcart и хранится в базе данных системы.
 
